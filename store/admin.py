@@ -59,14 +59,17 @@ class ProductStockAdmin(admin.ModelAdmin):
     search_fields = ("producto__nombre",)
 
 
-@admin.register(ProductImage)
-class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ("producto", "orden", "imagen")
-    list_filter = ("producto",)
-    search_fields = ("producto__nombre",)
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        Product,
+        related_name='images',
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to='products/')
 
 
-@admin.register(SiteSettings)
-class SiteSettingsAdmin(admin.ModelAdmin):
-    def has_add_permission(self, request):
-        return not SiteSettings.objects.exists()
+
+class SiteSettings(models.Model):
+    site_name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='logo/')
+    whatsapp = models.CharField(max_length=20)

@@ -66,7 +66,10 @@
     <div class="top">
       <div class="brand">
         {% if ajustes and ajustes.logo %}
-          <img src="{{ ajustes.logo.url }}" alt="{{ ajustes.nombre_marca }}">
+        {% if site.logo %}
+    <img src="{{ site.logo.url }}" alt="BETEL CASA DE DIOS">
+{% endif %}
+
         {% else %}
           <h2 style="margin:0;">{{ ajustes.nombre_marca|default:"Betel Casa de Dios" }}</h2>
         {% endif %}

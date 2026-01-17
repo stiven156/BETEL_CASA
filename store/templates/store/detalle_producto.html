@@ -32,7 +32,10 @@
     <div class="top">
       <div class="brand">
         {% if ajustes and ajustes.logo %}
-          <img src="{{ ajustes.logo.url }}" alt="{{ ajustes.nombre_marca }}">
+        {% for image in product.images.all %}
+    <img src="{{ image.image.url }}" alt="{{ product.name }}">
+        {% endfor %}
+
         {% else %}
           <h2 style="margin:0;">{{ ajustes.nombre_marca|default:"Betel Casa de Dios" }}</h2>
         {% endif %}
