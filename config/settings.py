@@ -130,3 +130,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+import os
+import dj_database_url
+
+SECRET_KEY = os.getenv("SECRET_KEY", SECRET_KEY)
+DEBUG = os.getenv("DEBUG", "True") == "True"
+ALLOWED_HOSTS = ["*"]
+
+DATABASES = {
+    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+}
