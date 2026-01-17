@@ -28,6 +28,11 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 import os
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+]
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
