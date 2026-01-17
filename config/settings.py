@@ -34,12 +34,12 @@ INSTALLED_APPS = [
     "orders",
 ]
 
-# =========================
-# MIDDLEWARE (WhiteNoise)
-# =========================
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    #"whitenoise.middleware.WhiteNoiseMiddleware",  # ✅
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # ← OBLIGATORIO
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -47,6 +47,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
 
 # =========================
 # URLS / TEMPLATES / WSGI
