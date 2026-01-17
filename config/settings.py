@@ -133,10 +133,22 @@ MEDIA_ROOT = BASE_DIR / "media"
 import os
 import dj_database_url
 
+# SECRET_KEY / DEBUG desde variables si existen (Railway), si no usa las locales
 SECRET_KEY = os.getenv("SECRET_KEY", SECRET_KEY)
 DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["*"]
 
-DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
-}
+# Base de datos:
+# - LOCAL: SQLite (si NO hay DATABASE_URL)
+# - RAILWAY: Postgres (si SÍ hay DATABASE_URL)
+if os.getenv("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"), conn_max_age=600)
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
