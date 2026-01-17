@@ -25,14 +25,21 @@ SECRET_KEY = 'django-insecure-%hv=k506)t#x#oymkre=a&ufoz$+ic(*@rr#d1v-t^q1&0-k#x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
 import os
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.railway.app",
+
+ALLOWED_HOSTS = [
+    "betelcasa-production.up.railway.app",
+    "localhost",
+    "127.0.0.1",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://betelcasa-production.up.railway.app",
+]
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
