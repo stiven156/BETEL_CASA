@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 Django>=5.0
 gunicorn
 whitenoise
 psycopg2-binary
+=======
+Django>=5.0
+gunicorn
+whitenoise
+psycopg2-binary
+>>>>>>> d2c4f078edae7a7c9f42e8a19eace97e9acdbe35
