@@ -56,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -152,3 +153,7 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
